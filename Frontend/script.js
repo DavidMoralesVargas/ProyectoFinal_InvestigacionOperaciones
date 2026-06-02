@@ -215,23 +215,67 @@
             }
 
             // --- AQUÍ HARÍAS TU LLAMADA FETCH AL BACKEND PYTHON ---
-            /*
-            fetch('http://tu-servidor-python:puerto/api/resolver', {
+            console.log(algorithm, payload);
+            fetch(`http://127.0.0.1:8000/api/${algorithm}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             })
             .then(response => response.json())
-            .then(data => { mostrarResultados(data); })
-            .catch(error => { console.error('Error:', error); });
-            */
+            .then(data => {
+    
+                let sumaProducto = 0;
 
-            // Simulación de éxito para la interfaz
-            showModal(
-                'Datos Preparados', 
-                `Se han estructurado los datos exitosamente para el algoritmo ${algorithmNames[algorithm]}.<br><br><span class="text-xs font-mono bg-gray-100 p-2 block mt-2 rounded overflow-x-auto text-left">` + JSON.stringify(payload, null, 2).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;') + `</span><br><span class="text-xs text-blue-600 mt-2 block">${balanceMessage}</span>`, 
-                'success'
-            );
+                let mensaje = `
+                    <table style="width:100%; border-collapse:collapse; text-align:center;">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid #ddd; padding:8px;">Resultado</th>
+                                <th style="border:1px solid #ddd; padding:8px;">Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                for(let i = 0; i < data.resultado.length; i++) {
+
+                    sumaProducto += data.resultado[i] * data.costos[i];
+
+                    mensaje += `
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;">
+                                ${data.resultado[i]}
+                            </td>
+                            <td style="border:1px solid #ddd; padding:8px;">
+                                ${data.costos[i]}
+                            </td>
+                        </tr>
+                    `;
+                }
+
+                mensaje += `
+                        </tbody>
+                    </table>
+
+                    <div style="margin-top:15px; font-size:18px; font-weight:bold;">
+                        Σ(Resultado × Costo) = ${sumaProducto}
+                    </div>
+                `;
+
+                showModal(
+                    'Resultado Método de Costo Mínimo',
+                    mensaje,
+                    'success'
+                );
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+});
+        }
+
+        function mostrarResultados(data) {
+            console.log(data)
         }
 
         // --- Sistema de Modales Personalizados ---
