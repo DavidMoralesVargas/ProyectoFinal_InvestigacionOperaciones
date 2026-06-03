@@ -5,6 +5,7 @@ from logica.transporte.costoMinimo import costoMinimo
 from logica.transporte.esquinaNoroeste import esquinaNoroeste
 from logica.transporte.voguel import voguel
 from copy import deepcopy
+from logica.metodo_grafico.metodoGrafico import metodoGrafico
 
 app = FastAPI()
 
@@ -73,3 +74,19 @@ def comparacion(payload: dict):
         "resultadoVoguel": resultadoVoguel,
         "costosVoguel": costosVoguel
     }
+
+@app.post("/api/graphical")
+def graphical(payload: dict):
+
+    if len(payload["constraints"]) == 0:
+        return {
+            "error": "Debe existir al menos una restricción."
+        }
+
+    grafico = metodoGrafico(
+        payload["objective"],
+        payload["constraints"],
+        payload["type"]
+    )
+
+    return grafico.resolver()

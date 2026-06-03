@@ -74,10 +74,80 @@
                 </div>
 
                 <!-- Vista: Método Gráfico (Placeholder) -->
-                <div id="view-graphical" class="hidden flex-1 flex flex-col items-center justify-center text-center py-16 fade-in">
-                    <i class="fas fa-tools text-7xl mb-6 text-orange-300"></i>
-                    <h3 class="text-3xl font-semibold text-gray-700">Módulo en Construcción</h3>
-                    <p class="text-lg text-gray-500 mt-4 max-w-md">La funcionalidad para el Método Gráfico se implementará en una fase futura.</p>
+                <div id="view-graphical"
+                    class="hidden flex-col gap-6 fade-in">
+
+                    <h2 class="text-3xl font-bold">
+                        Método Gráfico
+                    </h2>
+
+                    <div>
+
+                        <label class="font-semibold">
+                            Tipo de Optimización
+                        </label>
+
+                        <select
+                            id="optimizationType"
+                            class="border p-2 rounded w-full">
+
+                            <option value="max">
+                                Maximizar
+                            </option>
+
+                            <option value="min">
+                                Minimizar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+
+                        <input
+                            type="number"
+                            id="objectiveX"
+                            placeholder="Coeficiente X"
+                            class="border p-2 rounded">
+
+                        <input
+                            type="number"
+                            id="objectiveY"
+                            placeholder="Coeficiente Y"
+                            class="border p-2 rounded">
+
+                    </div>
+
+                    <div>
+
+                        <button
+                            onclick="addConstraint()"
+                            class="bg-blue-600 text-white px-4 py-2 rounded">
+
+                            Agregar Restricción
+
+                        </button>
+
+                    </div>
+
+                    <div id="constraintsContainer"></div>
+
+                    <button
+                        onclick="solveGraphical()"
+                        class="bg-green-600 text-white px-6 py-3 rounded">
+
+                        Resolver
+
+                    </button>
+
+                    <canvas
+                        id="graphCanvas"
+                        height="120">
+                    </canvas>
+
+                    <div id="graphicalResult"></div>
+
                 </div>
 
                 <!-- Vista: Configuración de Transporte -->
@@ -149,6 +219,8 @@
             </button>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="JS/script.js"></script>
+    <script src="JS/graficador.js"></script>
 </body>
 </html>
