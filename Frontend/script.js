@@ -223,7 +223,85 @@
             })
             .then(response => response.json())
             .then(data => {
-    
+
+                if (algorithm === "compare") {
+
+                    function calcularTotal(resultado, costos) {
+                        let total = 0;
+
+                        for (let i = 0; i < resultado.length; i++) {
+                            total += resultado[i] * costos[i];
+                        }
+
+                        return total;
+                    }
+
+                    const totalCostoMinimo = calcularTotal(
+                        data.resultadoCostoMinimo,
+                        data.costosCostoMinimo
+                    );
+
+                    const totalEsquina = calcularTotal(
+                        data.resultadoEsquina,
+                        data.costosEsquina
+                    );
+
+                    const totalVogel = calcularTotal(
+                        data.resultadoVoguel,
+                        data.costosVoguel
+                    );
+
+                    const mensaje = `
+                        <table style="width:100%; border-collapse:collapse; text-align:center;">
+                            <thead>
+                                <tr>
+                                    <th style="border:1px solid #ddd;padding:8px;">
+                                        Método
+                                    </th>
+                                    <th style="border:1px solid #ddd;padding:8px;">
+                                        Costo Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:1px solid #ddd;padding:8px;">
+                                        Costo Mínimo
+                                    </td>
+                                    <td style="border:1px solid #ddd;padding:8px;">
+                                        ${totalCostoMinimo}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid #ddd;padding:8px;">
+                                        Esquina Noroeste
+                                    </td>
+                                    <td style="border:1px solid #ddd;padding:8px;">
+                                        ${totalEsquina}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid #ddd;padding:8px;">
+                                        Vogel
+                                    </td>
+                                    <td style="border:1px solid #ddd;padding:8px;">
+                                        ${totalVogel}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+
+                    showModal(
+                        'Comparación de Métodos',
+                        mensaje,
+                        'success'
+                    );
+
+                    return;
+                }
+
+                // Tu código actual para min_cost, nw_corner y vogel
                 let sumaProducto = 0;
 
                 let mensaje = `
@@ -263,15 +341,12 @@
                 `;
 
                 showModal(
-                    'Resultado Método de Costo Mínimo',
+                    'Resultado Método',
                     mensaje,
                     'success'
                 );
 
             })
-            .catch(error => {
-                console.error('Error:', error);
-});
         }
 
         function mostrarResultados(data) {

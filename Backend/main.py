@@ -4,6 +4,7 @@ from logica.transporte.matriz_transporte import matriz_trasnporte
 from logica.transporte.costoMinimo import costoMinimo
 from logica.transporte.esquinaNoroeste import esquinaNoroeste
 from logica.transporte.voguel import voguel
+from copy import deepcopy
 
 app = FastAPI()
 
@@ -14,19 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Endpoint raíz
 @app.get("/")
 def inicio():
     print("a")
     return {"mensaje": "Hola desde FastAPI"}
-
-# Endpoint con parámetro
-@app.get("/usuarios/{id}")
-def obtener_usuario(id: int):
-    return {
-        "id": id,
-        "nombre": "David"
-    }
 
     
 @app.post("/api/min_cost")
@@ -46,3 +38,38 @@ def transporte(payload: dict):
     resultadoVoguel = voguel(payload["data"]["costs"], payload["data"]["demand"], payload["data"]["supply"])
     resultado, costos = resultadoVoguel.encontrarVoguel()
     return {"mensaje": "Datos recibidos", "datos": payload["data"]["costs"], "resultado": resultado, "costos": costos}
+
+
+@app.post("/api/compare")
+def comparacion(payload: dict):
+
+    costMinimo = costoMinimo(
+        deepcopy(payload["data"]["costs"]),
+        deepcopy(payload["data"]["demand"]),
+        deepcopy(payload["data"]["supply"])
+    )
+    resultadoCostoMinimo, costosCostoMinimo = costMinimo.encontrarCostoMinimo()
+
+    esquina = esquinaNoroeste(
+        deepcopy(payload["data"]["costs"]),
+        deepcopy(payload["data"]["demand"]),
+        deepcopy(payload["data"]["supply"])
+    )
+    resultadoEsquina, costosEsquina = esquina.encontrarEsquinaNoroeste()
+
+    vogel = voguel(
+        deepcopy(payload["data"]["costs"]),
+        deepcopy(payload["data"]["demand"]),
+        deepcopy(payload["data"]["supply"])
+    )
+    resultadoVoguel, costosVoguel = vogel.encontrarVoguel()
+
+    return {
+        "mensaje": "Datos recibidos",
+        "resultadoCostoMinimo": resultadoCostoMinimo,
+        "costosCostoMinimo": costosCostoMinimo,
+        "resultadoEsquina": resultadoEsquina,
+        "costosEsquina": costosEsquina,
+        "resultadoVoguel": resultadoVoguel,
+        "costosVoguel": costosVoguel
+    }
