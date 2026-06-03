@@ -10,7 +10,7 @@ function addConstraint() {
     container.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="restriction-row flex gap-2 mb-2">
+        <div class="restriction-row flex gap-2 mb-2 items-center">
 
             <input
                 type="number"
@@ -44,9 +44,40 @@ function addConstraint() {
                 class="value border p-2 rounded"
                 placeholder="Valor">
 
+            <button
+                type="button"
+                onclick="removeConstraint(this)"
+                class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded font-bold">
+
+                ✕
+            </button>
+
         </div>
         `
     );
+}
+
+function removeConstraint(button) {
+
+    const total =
+        document.querySelectorAll(
+            ".restriction-row"
+        ).length;
+
+    if (total === 1) {
+
+        showModal(
+            "Acción no permitida",
+            "Debe existir al menos una restricción.",
+            "warning"
+        );
+
+        return;
+    }
+
+    button
+        .closest(".restriction-row")
+        .remove();
 }
 
 function solveGraphical() {
