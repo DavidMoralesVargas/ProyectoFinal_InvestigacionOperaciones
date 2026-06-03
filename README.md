@@ -1,6 +1,6 @@
 # Proyecto Final - Investigación de Operaciones
 
-## 📖 Descripción del Proyecto
+## Descripción del Proyecto
 
 Este proyecto es una aplicación web desarrollada para resolver problemas clásicos de **Programación Lineal** en el área de la **Investigación de Operaciones** y la **Optimización**.
 
@@ -17,7 +17,7 @@ La aplicación permite al usuario elegir la opción que desea resolver mediante 
 
 ---
 
-# 🛠️ Tecnologías Utilizadas
+# Tecnologías Utilizadas
 
 ## Frontend
 
@@ -35,7 +35,7 @@ La aplicación permite al usuario elegir la opción que desea resolver mediante 
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 El proyecto se ejecuta mediante una arquitectura de tipo **Cliente - Servidor** para la comunicación entre el Frontend y el Backend.
 
@@ -63,9 +63,9 @@ Visualización al usuario
 
 ---
 
-# ⚙️ Funcionalidades
+# Funcionalidades
 
-## 🚚 Modelos de Transporte
+## Modelos de Transporte
 
 El usuario puede seleccionar alguno de los siguientes métodos:
 
@@ -92,7 +92,7 @@ En el caso de la **comparativa**, únicamente se presentan los costos finales de
 
 ---
 
-### 🧪 Ejemplo de Prueba
+### Ejemplo de Prueba
 
 |          | Destino 1 | Destino 2 | Destino 3 | Oferta |
 | -------- | --------- | --------- | --------- | ------ |
@@ -103,7 +103,7 @@ En el caso de la **comparativa**, únicamente se presentan los costos finales de
 
 ---
 
-# 📈 Método Gráfico
+# Método Gráfico
 
 Al seleccionar esta opción, el usuario deberá ingresar información como:
 
@@ -120,7 +120,7 @@ Posteriormente, la aplicación mostrará:
 
 ---
 
-### 🧪 Ejemplo de Prueba
+### Ejemplo de Prueba
 
 #### Función Objetivo
 
@@ -140,7 +140,7 @@ x,y >= 0
 
 ---
 
-# 🚀 Instalación
+# Instalación
 
 ## 1. Clonar el repositorio
 
