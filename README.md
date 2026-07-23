@@ -1,3 +1,18 @@
+## 🚀 Despliegue y Arquitectura Nivel 2 de C4
+
+### 🌐 Demo de la aplicación desplegado
+El proyecto se encuentra desplegado y funcional en la plataforma **Vercel**:
+* **URL de la Aplicación:** [https://proyecto-final-investigacion-operac.vercel.app](https://proyecto-final-investigacion-operac.vercel.app)
+
+---
+
+### 🧩 Diagrama de Contenedores (C4 - Nivel 2)
+A continuación se presenta una pequeña arquitectura del sistema, ilustrando la separación entre el cliente (Frontend estático) y el servidor (Backend FastAPI Serverless) y cómo interactúan entre sí dentro de Vercel:
+
+![Diagrama C4 Nivel 2](./Nivel2Deploy.png)
+
+
+
 # Proyecto Final - Investigación de Operaciones
 
 ## Descripción del Proyecto
