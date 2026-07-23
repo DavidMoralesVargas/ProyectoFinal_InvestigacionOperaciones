@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Fuerza a Python a reconocer la carpeta 'Backend' en su ruta de módulos
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from logica.transporte.matriz_transporte import matriz_trasnporte
@@ -6,7 +12,6 @@ from logica.transporte.esquinaNoroeste import esquinaNoroeste
 from logica.transporte.voguel import voguel
 from copy import deepcopy
 from logica.metodo_grafico.metodoGrafico import metodoGrafico
-
 app = FastAPI()
 
 app.add_middleware(
