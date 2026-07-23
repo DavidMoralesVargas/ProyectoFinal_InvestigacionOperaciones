@@ -216,7 +216,7 @@
 
             // --- AQUÍ HARÍAS TU LLAMADA FETCH AL BACKEND PYTHON ---
             console.log(algorithm, payload);
-            fetch(`http://127.0.0.1:8000/api/${algorithm}`, {
+            fetch(`/api/${algorithm}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
