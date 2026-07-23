@@ -16,10 +16,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def inicio():
-    print("a")
-    return {"mensaje": "Hola desde FastAPI"}
+# @app.get("/")
+# def inicio():
+#     print("a")
+#     return {"mensaje": "Hola desde FastAPI"}
 
     
 @app.post("/api/min_cost")
