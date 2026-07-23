@@ -211,7 +211,7 @@ function solveGraphical() {
     );
 
     fetch(
-        "http://127.0.0.1:8000/api/graphical",
+        "/api/graphical",
         {
             method: "POST",
             headers: {
